@@ -1,0 +1,69 @@
+main:
+  plan: [
+      "You are a helpful assistant in writing technical documentation. You know how to summary the arguments in a document and organize them into the following structure: introduction / body / conclusion, claims and evidence, cause and effect, compare and contrast, problem and solution.",
+      "The document is as follows:",
+      "{document}",
+      "Please break it down in the following format, with each subtask taking up one line:",
+      "Paragraph 1 - Main Point: [Describe the main point of the paragraph, in detail], Word Count: [Word count requirement, e.g., 800 words]",
+      "Paragraph 2 - Main Point: [Describe the main point of the paragraph, in detail], Word Count: [word count requirement, e.g. 1500 words]",
+      "...",
+      "Make sure that each subtask is clear and specific, and that all subtasks cover the entire content of the writing instruction.",
+      "Do not split the subtasks too finely; each subtask's paragraph should be no less than 200 words and no more than 1000 words.",
+      "Do not output any other content.",
+      "As this is an ongoing work, omit open-ended conclusions or other rheotorical hooks.",
+      "Write in Korean."
+  ]
+  extract_materials: [
+      "You should extract the figures and tables from the document.",
+      "document:",
+      "{document}",
+      "Use xml syntax to format your output:",
+      "- Use <img src=url> to insert an image. Provide a caption for the image with the <caption> tag for accessibility.",
+      "- Use <table> for alignment. Keep tables concise and structured.",
+      "Provide the figures with <figures> tag and provide the tables with <tables> tag. If there no any images or tables, include empty figures or tables tag.",
+      "Do not output any other content."
+  ]
+  write: [
+      "You are an excellent technical writing assistant. I will give you an original document, my planned writing steps and materials with figures and tables. I will also provide you with the text I have already written. Please help me continue writing the next paragraph based on the document, writing steps, figures, tables, and the already written text.",
+      "If your documentation mentions images, insert them in your draft.",
+      "document:",
+      "{document}",
+      "Writing steps:",
+      "{plan}",
+      "Already written text:",
+      "{text}",
+      "Figures:",
+      "{figures}",
+      "Tables:",
+      "{tables}",
+      "Please integrate the original document, writing steps, and the already written text, figures, tables, and now continue writing {STEP}.",
+      "For structured posts, you can add a small subtitle at the beginning.",
+      "Remember to only output the paragraph you write, without repeating the already written text.",
+      "Use markdown syntax to format your output:",
+      "- Headings: # for main, ## for sections, ### for subsections, etc.",
+      "- Lists: * or - for bulleted, 1. 2. 3. for numbered",
+      "- Images: ![](image url)\n_(caption text)_: to insert an image. Do not use xml tags and do not insert any description.",
+      "- Tables: | Column 1 | Column 2 | Column 3 | with |---|---|---| as separators; Ensure proper alignment for readability.",
+      "- Dot not repeat yourself",
+      "Provide the final answer with <result> tag.",
+      "Write in Korean."
+  ]
+reflect:
+  revise: [
+      "You are an excellent technical writing assistant. Your objective is publishing summary of document to tech blog for other engineer.",
+      "Revise this draft using the critique and additional information, and consider readability while keeping it structured format.",
+      "For readability, if needed, you can add a subtitle at the beginning.",
+      "If you're using a table, make sure that each row has the same number of columns.",
+      "Don't use the same image in duplicate.",
+      "Don't put any images in the revised output except for image urls that appeared in the draft.",
+      "draft:",
+      "{draft}",
+      "critique:",
+      "{reflection}",
+      "information:",
+      "{content}",
+      Paragraph should be no less than 200 words and no more than 700 words.,
+      Do not output unwanted words. Check markdown syntax.,
+      Provide the final answer with <result> tag.,
+      Write in Korean.
+  ] 
